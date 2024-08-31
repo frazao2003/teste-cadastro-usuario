@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Tecnologia</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    </div>
+  </div>
+</nav>
+<h1>Cadastro</h1>
+<div class="divider"></div>
+<form class="row" [formGroup]="clienteForm" (ngSubmit)="cadastrar()" #formDir="ngForm">
+  <div class="mb-3">
+    <label for="nome" class="form-label"  >Nome</label>
+    <input type="text" class="form-control" formControlName="nome" id="nome">
+    <div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="text-danger">
+      <div *ngIf="nome.errors?.['required']">Nome é obrigatório.</div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label"  >Email</label>
+    <input type="email" class="form-control" formControlName="email" id="email" aria-describedby="emailHelp">
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+      <div *ngIf="email.errors?.['required']">Email é obrigatório.</div>
+      <div *ngIf="email.errors?.['email']">Email inválido.</div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="senha" class="form-label" formControlName="senha" >Password</label>
+    <input type="password" class="form-control" id="senha" formControlName="senha">
+    <div *ngIf="senha.invalid && (senha.dirty || senha.touched)" class="text-danger">
+      <div *ngIf="senha.errors?.['required']">Senha é obrigatória.</div>
+      <div *ngIf="senha.errors?.['onlyNumbers']">A senha deve conter apenas números.</div>
+      <div *ngIf="senha.errors?.['maiorQue8Validacao']">A senha deve ter mais de 8 caracteres.</div>
+    </div>
+  </div>
+  <div class="div-button"> 
+    <button type="submit" class="btn btn-dark">Submit</button>
+  </div>
+</form>
